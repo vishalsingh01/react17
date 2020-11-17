@@ -140,4 +140,192 @@ ReactDOM.render(<Person name="Banu" email="banu@lucidatechnologies.com"/>, docum
 
 =====================
 
+// class components
+class Person extends React.Component {
+  render() {
+    return <div className="person">
+         <h1>{this.props.name}</h1>
+          <h3>{this.props.email}</h3>
+    </div>
+  }
+}
+
+ReactDOM.render(<Person name="Banu" email="banu@lucidatechnologies.com"/>, document.getElementById("app"));
+
+=======================================
+
+state:
+	Objects will have state and behavior
+	Banking Account ==> balance is a state;
+	balance gets changed by behaviour: deposit; withdraw
+
+	Button ==> color, size, caption ==> state
+	onClick, onmousedown, onHover ==> behaiour
+
+
+=================
+
+npx create-react-app customerapp
+
+open customerapp folder in VSC.
+
+====================
+
+functional components can't have state [ should use React hooks]
+ Asynchronous way of updating the state:
+Merge update:
+ this.setState({
+            "customers": custs
+ })
+
+
+==========
+
+	state = {
+		"name": "Peter",
+		"age" : 25
+	}
+
+	...
+
+	this.setState({
+		"age": 33
+	}, () => console.log("done"))
+
+
+	 state.name ==> "Peter"
+	 state.age ==> 33
+
+============================
+props is used to pass functions and values to child
+=========================================================
+
+
+
+npx create-react-app phoneapp
+
+============================================
+
+testing react application:
+	1) BDD ==> unit testing react components
+		unit testing frameworks: Jest, Jasmine, Mocha
+
+		React-testing-library provided by create-react-app comes with testing library on top of JEST
+
+	2) cypress/ selenium for e2e testing
+
+
+JavaScript testing: AAA ==> Assemble
+	"describe" ==> test suite or one file is one test suite
+	"it/test" ==> each test unit ==> where you perform action and assert
+
+	describe("app tests", () => {
+
+		it("first test", () => {
+
+		})
+
+		it("second test", () => {
+
+		})
+
+		test("third test", () => {
+
+		})
+	})
+
+============
+
+Testing frameworks: runs files which has "****.test.js" or "*****.spec.js" or "files within test folder"
+
+npm i cypress @cypress/code-coverage @cypress/instrument-cra
+
+=======================================
+
+React Context ==> introduced in react 16 version
+==> Context lets you “broadcast”  data, and changes to it, to all components below.
+
+=============
+
+ let PersonContext = React.createContext();
+
+	class PersonProvider extends React.Component {
+		 
+    componentDidMount() {
+      this.setState({
+				"name" : "Arya",
+				"email" : "someemail",
+				"updateEmail" : this.updateEmail.bind(this)
+			});
+    }
+
+		updateEmail(email) {
+			this.setState({
+				"email": email
+			});
+		}
+
+		render() {
+			return <PersonContext.Provider value={{...this.state}}>
+					{this.props.children}
+			</PersonContext.Provider>
+		}
+	}
+
+
+	class App extends React.Component {
+		render() {
+			return <PersonProvider>
+				<First />
+				</PersonProvider>
+		}
+	}
+
+	function First() {
+		return <> <h1> I am First !!! <Second /> </h1> </>
+	}
+
+
+	class Second extends React.Component {
+		render() {
+			return <PersonContext.Consumer>
+				{
+					value => {
+						return <>
+							Name : {value.name} <br />
+							Email : {value.email} <br />
+							<button onClick={()=> value.updateEmail("me@gmail.com")} type="button"> Change </button>
+
+						</>
+					}
+				}
+
+			</PersonContext.Consumer>
+		}
+	};
+
+ReactDOM.render(<App/>, document.getElementById("app"));
+
+============================
+
+let p = {
+	"name" : "Tim",
+	update : function (data) {
+		this.name = data;
+	}
+}
+
+p.update("Raj");
+console.log(p);
+
+let n = p.name; // Raj
+// let fn = p.update; ==> Context is lost [ doesn't kno "this" reference to which it belongs it]
+let fn = p.update.bind(p);	
+
+fn("Geetha");
+
+
+===============================
+
+Router, Context , bootstrap
 
