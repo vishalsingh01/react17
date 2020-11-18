@@ -503,8 +503,175 @@ phoneapp needs the following react components:
 	http://localhost:3000/abc
 
 rcc
+import {Link} from 'react-router-dom';
+
+ <Link to="/">
+                    <i className="navbar-brand">
+                        Rakuten
+                    </i>
+            </Link>
+
+
+Click on Rakuten triggers Route / and ProductList component is rendered.
+
+----------------
+
+<a href="/a.html">
+	 <i className="navbar-brand">
+                        Rakuten
+                    </i>
+</a>
+
+use "a href" to navigate to different page
+
+===============
+FROM "share.zip" file:
+copy "data.js" into "src"
+copy "Context.js" into "components" folder
+
+==============
+
+Chrome extensions:
+	React Developer tools
+	Redux DevTools
+
+=======================================
+
+
+react-router-dom ==> BrowserRouter
+
+ <Router>
+      <Navbar />
+      <Switch>
+        <Route path="/cart" component={Cart} />
+        <Route path="/details/:id" component={Details} />
+        <Route exact path="/" component={ProductList} />
+        <Route default component={Default} />
+      </Switch>
+    </Router>    
+
+bootstrap, styled-components, fontawesome
+
+===============
+
+Context.js
+	 state = {
+        products : [],
+        cart: [],
+        detailProduct: {},
+        cartSubTotal : 0,
+        cartTax : 0,
+        cartTotal : 0
+    }
+
+    ProductList ==> Consumer ==> products
+
+    Cart ==> Consumer ==> cart, cartSubtotal, cartTax,
+
+    DetailComponent ==> Consumer ===> detailProduct
+
+
+  class ProductProvider extends Component {
+
+  	 addToCart  (id)  {
+        console.log("add to cart", id);
+        let prd = this.getItem(id);
+        prd.inCart = true;
+        prd.count = 1; // how many items in cart
+        prd.total = prd.price;
+        let cartCopy =  this.state.cart;
+        cartCopy.push(prd);
+        this.setState({
+            cart: cartCopy
+        }, () => this.addTotal())
+    }
+
+    render() {
+        return (
+            <ProductContext.Provider value={{
+                ...this.state,
+               
+                addToCart: this.addToCart.bind(this),
+                 
+            }}>
+                {this.props.children}                
+            </ProductContext.Provider>
+        );
+    }
+}
+
+============
+
+<div className="container">
+                <div className="row">
+                    
+                </div>
+ </div>
+
+ "container" bootstrap css gives automatic margin on left and right
+ "row" ==> divides the viewport into 12 columns
+
+ ==========
+
+ After Tea break 15 min
+
+ complete + and - operations in cartList
+
+ ===================================================
+
+ data.json 
+
+ npm i -g json-server
+
+ 	json-server ==> for RESTful web services
+
+ 	this treats a file as restful resource; CRUD operations on this file
+
+ 	{
+ 		"customers" : [],
+ 		"products" : [],
+ 		"orders" : []
+ 	}
+
+
+ 	/customers
+ 	/products
+
+ ============
+
+ form react to make HTTP requests we can use any of the following libraries: jQuery [Ajax], fetch, axios,...
+
+
+ axios.get('http://localhost:1234/products')
+  .then(
+  function (response) {
+    // handle success
+    console.log(response);
+  },
+  function( err) {
+
+}).catch(error) {
+
+   }
+
+========
+phoneapp:
+  1) using React.createContext() ; // central source of truth ==> state and functions placed here any component can subscribe; no need to pass as "props" thro intermediary
+
+  2) react-router-dom
+  		SPA ==> different URIs ==> different views
+  		BrowserRouter, Route, Switch
+
+  3) axios ==> http calls to get json data from RESTful web service
+
+  4) inspect using Rect Developer tools [ Chrome extension] and debug
+
+==========
+
+React Hooks, Redux, other advance concepts
+
+==================
 
 
 
-
-
+  
