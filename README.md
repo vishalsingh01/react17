@@ -330,4 +330,181 @@ fn("Geetha");
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	
 Router, Context , bootstrap
+queryByText
+queryByRole
+queryByLabelText
+queryByPlaceholderText
+queryByAltText
+queryByDisplayValue
+queryByTestId
+===================
+
+Day 2:
+------
+
+	1) React.createElement()
+	2) functional component function Product() { return JSX }
+	3) class Components: 
+	class Product extends React.Component {
+		render() {
+			return JSX
+		}
+	}
+
+	4) state and props
+	props is a mechanism using which parent passes vairables and function reference to child components
+
+	5) npx create-react-app customerapp
+		creates a scaffolding code
+
+	6) 	RTL ==> react Testing library
+
+		Unit testing ==> RTL built on top of JEST, JEST-dom
+
+		getByText
+		getByPlaceHolder
+		getByRole
+		
+		<input type="text" /> if within this textbox value ==> typed text is Hello
+		getByDisplayValue ==> screen.getByDisplayValue("Hello")
+
+		<div test-id="one"></one>
+
+		getByTestId ==> screen.getByTestId("one")
+
+		<label for="firstName">
+			<input type="text" />
+		</label>
+
+		getByLabelText ==> screen.getByLabelText("firstName") ; ==> returns the text box which has label "firstName"
+
+		-----
+
+		let {container} = render(<App/>)
+
+		using container i can access any DOM element using core JS functions like
+		getElementById, getElementByTagName, querySelector, querySelectorAll
+
+		--------
+
+		all the above methods has getAll versions
+		Example: getAllByRole("button")
+
+=======================
+
+	we also have queryBy methods for all the above mentioned methods
+	like: queryByText, queryByRole
+
+	difference is queryByXXX returns "null" if not found where as getByXXX throws exception if not found
+
+	let elem = getByText(/Monica/i);
+
+	expect(elem).toBeNull(); // throws exception
+
+	where as 
+
+	let elem = queryByText(/Monica/i);
+
+	expect(elem).toBeNull(); test fails
+=========================
+
+findByXXX also available for above options
+
+findByText(/Monica/i) ==> waitFor() method async operatation
+
+Difference is "findBy" should be used for anything which comes eventually [ Promise based API]
+
+====================
+
+React Component Life Cycle:
+
+constructor() ==> render() ==> componentDidMount() will be called
+Any interaction to server should be done in componentDidMount()
+
+once componentDidMount() completes ==> shouldComponentUpdate() ==> render() ==> componentDidUpdate()  
+
+========================================================
+
+cypress E2E testing [ like how you see on browser]
+npm i cypress @cypress/code-coverage @cypress/instrument-cra
+
+1) start your server
+npm start
+
+2)  place cypress.json in application folder
+
+3) npm run cypress
+
+	this creates "cypress" folder and runs around 115 tests of sample "spec" files present in "integration/examples" folder
+
+4) delete generated "spec" files and create our "spec" files in that folder
+
+
+
+
+
+	 cy.get(".row") ==> document.querySelectorAll(".row")
+
+	  cy.get("input") ==> document.getElementByTagName("input")
+
+==========================================
+
+
+npx create-react-app phoneapp
+npm i bootstrap react-router-dom styled-components
+
+
+1) bootstrap
+	CSS library for creating Responsive Web design
+	it uses 12 grid / column system
+
+2) styled-components
+	ready made react components wrapper for all DOM elements
+	https://styled-components.com/
+
+3) react-router-dom
+	
+	Single Application applications will have only one html page [ index.html]
+
+	We need to display different views for different URLs
+
+	http://localhost:3000/products
+
+	http://localhost:3000/cart
+
+	http://localhost:3000/orders
+
+	http://localhost:3000/details/iphone12
+
+	Why?
+		1) SEO
+			search on rakuten locations
+
+			http://rakuten.com/locations
+
+			search iPhone 12
+
+			http://amazon.com/mobiles/iPhone12
+
+		2) Bookmark
+
+		3) History API
+			Prev and next browser actions should navigate between views and not pages
+===============================================================================================
+
+phoneapp needs the following react components:
+1) Navbar
+2) ProductList 
+3) Product
+4) Cart
+5) CartList
+6) Detail
+7) Default
+	http://localhost:3000/abc
+
+rcc
+
+
+
+
 
