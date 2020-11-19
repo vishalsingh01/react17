@@ -22,7 +22,7 @@ describe("customer row test", () => {
     
         expect(callback).toBeCalledTimes(1);
         expect(callback).toBeCalledWith(4);
-        screen.debug();
+       
     });
 
 
