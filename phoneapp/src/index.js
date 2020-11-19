@@ -7,12 +7,14 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ProductProvider } from './components/Context';
 
+import Sample from './components/Sample';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProductProvider>
+    {/* <ProductProvider>
       <App />
-    </ProductProvider>
+    </ProductProvider> */}
+    <Sample />
   </React.StrictMode>,
   document.getElementById('root')
 );
