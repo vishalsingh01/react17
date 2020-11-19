@@ -1490,3 +1490,71 @@ ReactDOM.render(<Parent />, document.getElementById('app'));
 
 ============================================
 
+
+================================================================================
+
+	React Hooks:
+	1) useState
+	2) useReducer
+	3) useRef same as React.createRef
+	4) useEffect
+		for side effects ==> side effects are asynchrononous operations done in react component
+		like setInterval, setTimeout, making REST calls to server.
+
+
+
+		function App() {
+		  let [count, setCount] = React.useState(0);
+		  // same as componentDidUpdate()
+		  React.useEffect( () => {
+		  		// code to make axios call
+        		console.log("side effect 1")
+		  });
+		  // same as componentDidMount()
+		  React.useEffect( () => {
+		  		// code to make axios call
+        		console.log("side effect 2")
+		  },[]);
+
+		  return (
+		    <>
+		        Count {count} <br />
+		      <button onClick={() => setCount(count + 1)} > + </button>
+		    </>
+		  );
+		} 
+
+ 
+    ReactDOM.render(<App />, document.getElementById('app'));
+
+
+    5. useMemo [ memorize the variable value ]
+    6. useCallback [ memorize the function ]
+
+ ==========================================================
+
+ {
+ 	"rterg3tdfsde": {id:"sdf", , "name" : "SDfsd", "date", "sdf"}
+ }
+
+ Redux:
+ 
+
+npm i redux redux-logger
+
+===================
+
+	1) const store = createStore(reducers) ==> central source of truth
+
+	2) ActionCreators ==> simple JS functions ==> take data ==> format and send {type,payload}
+
+	3) Reducers ==> state, action ==> copy state ==> mutate --> return new state to store
+
+	4) container ==> has connect(mapStateToProps, mapDispatchToProps)(BaseComponent)
+
+===========================================
+
+
+
+
+
